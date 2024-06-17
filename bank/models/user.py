@@ -1,5 +1,8 @@
-from datetime import date
 import hashlib
+from datetime import date
+
+
+from bank.exceptions.user_exceptions import InvalidPhoneError
 
 
 class User:
@@ -68,7 +71,7 @@ class User:
     @staticmethod
     def _validate_phone_number(phone_number: str) -> str:
         if len(phone_number) != 10 or not phone_number.isdigit():
-            raise ValueError("Phone number must be 10 digits long.")
+            raise InvalidPhoneError()
         return phone_number
 
     @staticmethod
